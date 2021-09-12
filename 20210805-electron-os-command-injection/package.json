@@ -1,0 +1,14 @@
+{
+  "name": "20210805-study-electron-os-command-injection",
+  "version": "1.0.0",
+  "private": true,
+  "main": "main.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "@types/node": "^16.4.12",
+    "electron": "^13.1.8"
+  }
+}
