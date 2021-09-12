@@ -1,0 +1,23 @@
+# import * from "../schemas/User.graphql"
+
+query getUser($id: ID!) {
+  user(id: $id) {
+    id
+    name
+    age
+    gender
+  }
+}
+
+query getUsers {
+  users {
+    id
+    name
+  }
+}
+
+mutation addUser($input: UserInput!) {
+  addUser(input: $input) {
+    id
+  }
+}
