@@ -12,3 +12,5 @@ npm install
 npm run build
 NEW_RELIC_LICENSE_KEY=YOUR_LICENSE_KEY npm start
 ```
+
+http://localhost:3000/users
