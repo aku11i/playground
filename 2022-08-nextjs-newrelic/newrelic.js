@@ -9,7 +9,7 @@ exports.config = {
   /**
    * Array of application names.
    */
-  app_name: ["nextjs-sandbox"],
+  app_name: ["nextjs-sandbox-2"],
   /**
    * Your New Relic license key.
    */
