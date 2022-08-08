@@ -1,14 +1,26 @@
 import { GetServerSideProps, NextPage } from "next";
 import Link from "next/link";
+import Script from "next/script";
+import { useId } from "react";
 import { getUsers, Profile } from "../../lib/query";
 
 type UsersPageProps = {
   users: Profile[];
+  browserTimingScript: string;
 };
 
-const UsersPage: NextPage<UsersPageProps> = ({ users }) => {
+const UsersPage: NextPage<UsersPageProps> = ({
+  users,
+  browserTimingScript,
+}) => {
+  const id = useId();
+
   return (
     <main style={{ padding: "24px" }}>
+      <Script id={id} strategy="afterInteractive">
+        {browserTimingScript}
+      </Script>
+
       <ul style={{ display: "flex", gap: "16px", flexDirection: "column" }}>
         {users.map((profile) => (
           <li key={profile.userId}>
@@ -27,5 +39,10 @@ export const getServerSideProps: GetServerSideProps<
 > = async () => {
   const users = await getUsers();
 
-  return { props: { users } };
+  const newrelic = await import("newrelic");
+  const browserTimingScript = await newrelic.getBrowserTimingHeader({
+    hasToRemoveScriptWrapper: true,
+  });
+
+  return { props: { users, browserTimingScript } };
 };

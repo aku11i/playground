@@ -1,16 +1,27 @@
 import { GetServerSideProps, NextPage } from "next";
-import { useMemo } from "react";
+import Script from "next/script";
+import { useId, useMemo } from "react";
 import { getProfile, Profile } from "../../lib/query";
 
 type ProfilePageProps = {
   profile: Profile;
+  browserTimingScript: string;
 };
 
-const ProfilePage: NextPage<ProfilePageProps> = ({ profile }) => {
+const ProfilePage: NextPage<ProfilePageProps> = ({
+  profile,
+  browserTimingScript,
+}) => {
+  const id = useId();
+
   const json = useMemo(() => JSON.stringify(profile, null, 2), [profile]);
 
   return (
     <main style={{ padding: "24px" }}>
+      <Script id={id} strategy="afterInteractive">
+        {browserTimingScript}
+      </Script>
+
       <p style={{ whiteSpace: "pre-wrap" }}>{json}</p>
     </main>
   );
@@ -33,5 +44,10 @@ export const getServerSideProps: GetServerSideProps<ProfilePageProps> = async ({
     return { notFound: true };
   }
 
-  return { props: { profile } };
+  const newrelic = await import("newrelic");
+  const browserTimingScript = await newrelic.getBrowserTimingHeader({
+    hasToRemoveScriptWrapper: true,
+  });
+
+  return { props: { profile, browserTimingScript } };
 };
