@@ -10,5 +10,5 @@ npm install
 
 ```sh
 npm run build
-npm start
+NEW_RELIC_LICENSE_KEY=YOUR_LICENSE_KEY npm start
 ```
