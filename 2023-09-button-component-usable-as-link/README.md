@@ -1,27 +1,28 @@
-# React + TypeScript + Vite
+# Create a button component usable as a link (React)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A sample project of a UI component library in React.<br>
+It's built with React, Tailwind CSS, Vite, and Storybook.
 
-Currently, two official plugins are available:
+The main feature is that components can be extended with `as` props.<br>
+It helps create a component that looks like a button but functions as a link.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The implementation is based on Chakra UI. For a detailed explanation, please check the blog post.
 
-## Expanding the ESLint configuration
+https://zenn.dev/alphadrive/articles/2023-09-button-component-usable-as-link
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+<table>
+<tr>
+ <td><img width="631" alt="スクリーンショット 2023-09-01 21 32 47" src="https://github.com/aku11i/playground/assets/54097100/78a8cc59-d8d4-429e-8a3c-232703aabc66">
+ <td><img width="631" alt="スクリーンショット 2023-09-01 21 32 34" src="https://github.com/aku11i/playground/assets/54097100/7c033efb-8e26-439c-b4af-dddb485e858d">
+</table>
 
-- Configure the top-level `parserOptions` property like this:
+## Start development server
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```sh
+npm install && npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+| Service   | URL                   |
+| --------- | --------------------- |
+| Storybook | http://localhost:6006 |
+| Vite      | http://localhost:3000 |
